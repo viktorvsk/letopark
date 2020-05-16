@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,64 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_516_200_034) do
+ActiveRecord::Schema.define(version: 2020_05_16_200034) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'customers', force: :cascade do |t|
-    t.string 'name'
-    t.integer 'phone'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.integer "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'devices', force: :cascade do |t|
-    t.bigint 'customer_id', null: false
-    t.string 'access_token', null: false
-    t.string 'refresh_token', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['customer_id'], name: 'index_devices_on_customer_id'
+  create_table "devices", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "access_token", null: false
+    t.string "refresh_token", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_devices_on_customer_id"
   end
 
-  create_table 'order_items', force: :cascade do |t|
-    t.bigint 'order_id', null: false
-    t.bigint 'product_id'
-    t.integer 'quantity', null: false
-    t.integer 'price', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['order_id'], name: 'index_order_items_on_order_id'
-    t.index ['product_id'], name: 'index_order_items_on_product_id'
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id"
+    t.integer "quantity", null: false
+    t.integer "price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
-  create_table 'orders', force: :cascade do |t|
-    t.bigint 'customer_id', null: false
-    t.string 'code', null: false
-    t.string 'comment', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['customer_id'], name: 'index_orders_on_customer_id'
+  create_table "orders", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "code", null: false
+    t.string "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
-  create_table 'products', force: :cascade do |t|
-    t.string 'name', null: false
-    t.integer 'price', null: false
-    t.string 'description', null: false
-    t.bigint 'store_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['store_id'], name: 'index_products_on_store_id'
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.string "description", null: false
+    t.bigint "store_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_products_on_store_id"
   end
 
-  create_table 'stores', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "stores", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key 'devices', 'customers'
-  add_foreign_key 'order_items', 'orders'
-  add_foreign_key 'orders', 'customers'
-  add_foreign_key 'products', 'stores'
+  add_foreign_key "devices", "customers"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "products", "stores"
 end
