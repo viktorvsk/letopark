@@ -24,3 +24,7 @@ end
 
 group :development do
 end
+
+gem 'activeadmin'
+gem 'arctic_admin'
+gem 'devise'
