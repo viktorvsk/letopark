@@ -28,3 +28,6 @@ end
 gem 'activeadmin'
 gem 'arctic_admin'
 gem 'devise'
+
+gem 'carrierwave', '~> 1.0'
+gem 'fog-aws'

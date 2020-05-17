@@ -4,6 +4,7 @@
 FactoryBot.define do
   factory :product do
     store
+    image
     name { 'Some Name' }
     price { rand(300) }
     description { 'Lorem Ipsum' }

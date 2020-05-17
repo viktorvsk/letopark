@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Product do
-  permit_params :name, :price, :description, :store_id
+  permit_params :name, :price, :description, :store_id, :attachment
 
   index do
     selectable_column
@@ -30,6 +30,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :price
       f.input :description
+      f.input :attachment, as: :file, hint: (f.object.attachment && image_tag(f.object.attachment.url))
       f.input :store
     end
     f.actions
