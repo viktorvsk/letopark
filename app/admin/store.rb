@@ -7,6 +7,7 @@ ActiveAdmin.register Store do
     selectable_column
     id_column
     column :name
+    actions
   end
 
   show do

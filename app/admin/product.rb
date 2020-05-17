@@ -10,6 +10,7 @@ ActiveAdmin.register Product do
     column :price
     column :description
     column :store
+    actions
   end
 
   show do
@@ -29,9 +30,9 @@ ActiveAdmin.register Product do
     f.inputs do
       f.input :name
       f.input :price
-      f.input :description
+      f.input :description, as: :text
       f.input :attachment, as: :file, hint: (f.object.attachment && image_tag(f.object.attachment.url))
-      f.input :store
+      f.input :store, include_blank: false
     end
     f.actions
   end
