@@ -1,8 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# frozen_string_literal: true
+
+AdminUser.where(email: 'admin@example.com').first_or_create(password: 'password', password_confirmation: 'password')
+store = Store.where(name: 'Burgerzzz').first_or_create
+store.products.where(name: 'Typo Burger').first_or_create(price: 159, description: 'Very Tasty', ingredients: 'cheese, meat, bread', tags: 'spicy', attachment: File.open(Rails.root.join('spec/support/img.png')))
+store.products.where(name: 'Pirate Burger').first_or_create(price: 259, description: 'Very Tasty', ingredients: 'cheese, meat, bread', tags: 'spicy', attachment: File.open(Rails.root.join('spec/support/img.png')))
+store.products.where(name: 'Crazy Burger').first_or_create(price: 279, description: 'Very Tasty', ingredients: 'cheese, meat, bread', tags: 'spicy', attachment: File.open(Rails.root.join('spec/support/img.png')))
