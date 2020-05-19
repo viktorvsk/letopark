@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class StoresController < ActionController::API
+    class StoresController < ApiController
       def index
         render json: Store.includes(:products)
       end
