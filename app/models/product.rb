@@ -15,6 +15,6 @@ class Product < ApplicationRecord
   delegate :attachment, to: :image, allow_nil: true
 
   def attachment=(value)
-    (image || build_image).update(attachment: value)
+    (image || build_image).assign_attributes(attachment: value)
   end
 end
