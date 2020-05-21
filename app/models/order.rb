@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  STATUSES = %w[new in_progress cooking ready completed canceled_by_customer canceled_by_waiter].freeze
+  STATUSES = %w[
+    new
+    in_progress
+    ready
+    completed
+    canceled_by_customer
+    canceled_by_waiter
+  ].freeze
 
   after_initialize :build_new_order
 
