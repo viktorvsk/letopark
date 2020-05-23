@@ -20,6 +20,19 @@ class Order < ApplicationRecord
   validates :comment, exclusion: { in: [nil] }
   validates :status, inclusion: { in: STATUSES }
 
+  scope :news, -> { where(status: 'new') }
+  scope :in_progress, -> { where(status: 'in_progress') }
+  scope :ready, -> { where(status: 'ready') }
+  scope :completed, -> { where(status: 'completed') }
+
+  def display_name
+    id
+  end
+
+  def readiness
+    "#{order_items.news.count} / #{order_items.in_progress.count} / #{order_items.ready.count}"
+  end
+
   private
 
   def build_new_order

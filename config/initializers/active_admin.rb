@@ -145,7 +145,7 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  config.batch_actions = true
+  config.batch_actions = false
 
   # == Controller Filters
   #
@@ -255,19 +255,17 @@ ActiveAdmin.setup do |config|
   #
   # To disable/customize for the :admin namespace:
   #
-  #   config.namespace :admin do |admin|
-  #
-  #     # Disable the links entirely
-  #     admin.download_links = false
-  #
-  #     # Only show XML & PDF options
-  #     admin.download_links = [:xml, :pdf]
-  #
-  #     # Enable/disable the links based on block
-  #     #   (for example, with cancan)
-  #     admin.download_links = proc { can?(:view_download_links) }
-  #
-  #   end
+  config.namespace :admin do |admin|
+    # Disable the links entirely
+    admin.download_links = false
+
+    # Only show XML & PDF options
+    # admin.download_links = [:xml, :pdf]
+
+    # Enable/disable the links based on block
+    #   (for example, with cancan)
+    # admin.download_links = proc { can?(:view_download_links) }
+  end
 
   # == Pagination
   #
@@ -307,7 +305,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  # config.footer = 'my custom footer text'
+  config.footer = 'LETOPARK'
 
   # == Sorting
   #
