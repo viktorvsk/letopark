@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Store do
-  permit_params :name
+  permit_params :name, :admin_user_id
 
   index do
     selectable_column
@@ -21,6 +21,7 @@ ActiveAdmin.register Store do
   form do |f|
     f.inputs do
       f.input :name
+      f.input :admin_user
     end
     f.actions
   end

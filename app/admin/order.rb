@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Order do
+  menu if: proc { current_admin_user.role == 'admin' }
+  config.breadcrumb = true
   actions :index, :show
 
   scope(:all)
-  scope(:news)
+  scope(:news, default: true)
   scope(:in_progress)
   scope(:ready)
 

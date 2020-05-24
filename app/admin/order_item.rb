@@ -1,12 +1,24 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register OrderItem do
+  menu if: proc { current_admin_user.role == 'admin' }
+  config.filters = false
   actions :index
 
   scope(:all)
-  scope(:news)
+  scope(:news, default: true)
   scope(:in_progress)
   scope(:ready)
+
+  controller do
+    # def scoped_collection
+    #   case current_admin_user.role
+    #   when 'merchant' then current_admin_user.order_items
+    #   when 'waiter' then OrderItem.none
+    #   when 'admin' then OrderItem.all
+    #   end
+    # end
+  end
 
   index do
     column 'Точка', &:store_name
@@ -19,8 +31,6 @@ ActiveAdmin.register OrderItem do
       item 'Готово', finished_admin_order_item_path(order_item), class: 'member_link', method: :put if order_item.status == 'in_progress'
     end
   end
-
-  filter :store
 
   member_action :cooking, method: :put do
     resource.update(status: :in_progress)
