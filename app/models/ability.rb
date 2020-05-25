@@ -4,6 +4,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    return unless user
+
     case user.role
     when 'merchant'
       can :manage, OrderItem, store_id: user.stores.pluck(:id)
