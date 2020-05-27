@@ -13,17 +13,17 @@ module Api
           order.order_items.create!(item_params)
         end
 
-        render json: current_device.customer.orders
+        render json: current_device.customer.orders.order('created_at DESC')
       end
 
       def index
-        render json: current_device.customer.orders.includes(order_items: { product: :image })
+        render json: current_device.customer.orders.includes(order_items: { product: :image }).order('created_at DESC')
       end
 
       def destroy
         order = current_device.customer.orders.find_by(code: params[:id])
         if order.update(status: 'canceled_by_customer')
-          render json: current_device.customer.orders
+          render json: current_device.customer.orders.order('created_at DESC')
         else
           render json: { errors: order.errors }, status: :unprocessable_entity
         end

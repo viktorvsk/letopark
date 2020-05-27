@@ -15,7 +15,7 @@ ActiveAdmin.register Order do
   index do
     id_column
     column 'Комментарий', &:comment
-    column 'Готовность (в очереди/на кухне/готов)', &:readiness
+    column 'Готовность (в очереди/на кухне/готов)', &:readiness_text
     column 'Время', &:created_at
     column :status
     actions do |order|

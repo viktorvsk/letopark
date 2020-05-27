@@ -29,8 +29,22 @@ class Order < ApplicationRecord
     id
   end
 
-  def readiness
+  def readiness_text
     "#{order_items.news.count} / #{order_items.in_progress.count} / #{order_items.ready.count}"
+  end
+
+  def readiness_percentage
+    return 100 if status.in?(%w[ready completed canceled_by_waiter canceled_by_customer])
+
+    coeffs = order_items.map do |oi|
+      case oi.status
+      when 'new' then 33
+      when 'in_progress' then 50
+      when 'ready' then 100
+      end
+    end
+
+    coeffs.sum / coeffs.size
   end
 
   private
