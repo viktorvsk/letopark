@@ -43,6 +43,14 @@ ActiveAdmin.register Order do
         column :status
         column :price
         column :total, &:total
+        column '' do |order_item|
+          case order_item.status
+          when 'new'
+            button_to('На кухне', cooking_admin_order_item_path(order_item), class: 'button', method: :put)
+          when 'in_progress'
+            button_to('Готово', finished_admin_order_item_path(order_item), class: 'button', method: :put)
+          end
+        end
       end
     end
 

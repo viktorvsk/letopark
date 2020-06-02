@@ -11,6 +11,8 @@ class Ability
       can :manage, OrderItem, store_id: user.stores.pluck(:id)
     when 'waiter'
       can :manage, Order
+      can :cooking, OrderItem
+      can :finished, OrderItem
     when 'admin'
       can :manage, :all
     else
