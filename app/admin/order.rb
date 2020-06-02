@@ -14,10 +14,12 @@ ActiveAdmin.register Order do
 
   index do
     id_column
-    column 'Комментарий', &:comment
-    column 'Готовность (в очереди/на кухне/готов)', &:readiness_text
-    column 'Время', &:created_at
-    column :status
+    column :readiness_text
+    column :created_at
+    column :status do |order|
+      span(t("statuses.order.#{order.status}"), class: 'status_tag')
+    end
+    column :comment
     actions do |order|
       item 'На кухне', cooking_admin_order_path(order), class: 'member_link', method: :put if order.status == 'new'
       item 'Готово', finished_admin_order_path(order), class: 'member_link', method: :put if order.status == 'in_progress'
@@ -34,13 +36,15 @@ ActiveAdmin.register Order do
 
   show do
     h2 order.customer.name if order.customer.name.present?
-    h4 order.created_at.strftime('%e %B %X')
+    h4 l(order.created_at)
 
-    panel "Заказ (#{order.status})" do
+    panel "Заказ (#{t("statuses.order.#{order.status}")})" do
       table_for order.order_items.includes(:product) do
         column :product
         column :quantity
-        column :status
+        column :status do |order_item|
+          span(t("statuses.order_item.#{order_item.status}"), class: 'status_tag')
+        end
         column :price
         column :total, &:total
         column '' do |order_item|

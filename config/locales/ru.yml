@@ -1,0 +1,78 @@
+ru:
+  roles:
+    admin: Главный Администратор
+    merchant: Администратор Магазина
+    waiter: Официант
+  statuses:
+    order:
+      new: В очереди
+      in_progress: Готовится
+      ready: Приготовлен
+      completed: Завершен
+      canceled_by_customer: Отменен (клиентом)
+      canceled_by_waiter: Отменен (официантом)
+    order_item:
+      new: В очереди
+      in_progress: Готовится
+      ready: Приготовлен
+      completed: Завершен
+  activerecord:
+    models:
+      admin_user:
+        one: Главный Администратор
+        other: Главные Администраторы
+      product:
+        one: Продукт
+        other: Продукты
+      order:
+        one: Заказ
+        other: Заказы
+      order_item:
+        one: Товар
+        other: Товары
+      store:
+        one: Магазин
+        other: Магазины
+    attributes:
+      admin_user:
+        email: Email
+        role: Роль
+        created_at: Время
+        password: Пароль
+      product:
+        name: Название
+        price: Цена
+        description: Описание
+        ingredients: Ингредиенты
+        tags: Теги
+        store: Магазин
+        attachment: Изображение
+      store:
+        name: Название
+        admin_user: Администратор
+      order:
+        comment: Комментарий
+        status: Состояние
+        created_at: Время
+        readiness_text: Готовность (в очереди/на кухне/готов)
+      order_item:
+        product: Товар
+        quantity: Количество
+        status: Состояние
+        price: Цена
+        total: Всего (Цена × Количество)
+        store_name: Торговая точка
+        display_name: Название
+        order: Заказ №
+        order_comment: Комментарий к заказу
+        created_at: Время
+
+    errors:
+  helpers:
+    label:
+  active_admin:
+    scopes:
+      all: Все
+      news: В очереди
+      in_progress: Готовятся
+      ready: Приготовлены

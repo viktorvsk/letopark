@@ -35,8 +35,8 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :price
       f.input :description, as: :text
-      f.input :ingredients, hint: 'Comma separated'
-      f.input :tags, hint: 'Comma separated'
+      f.input :ingredients, hint: 'Разделитель - запятая'
+      f.input :tags, hint: 'Разделитель - запятая'
       f.input :attachment, as: :file, hint: (f.object.attachment && image_tag(f.object.attachment.url))
       f.input :store, include_blank: false
     end

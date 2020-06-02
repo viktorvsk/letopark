@@ -119,7 +119,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+  config.root_to = 'stores#index'
 
   # == Admin Comments
   #
@@ -314,3 +314,5 @@ ActiveAdmin.setup do |config|
   #
   # config.order_clause = MyOrderClause
 end
+
+I18n.default_locale = :ru

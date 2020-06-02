@@ -5,7 +5,9 @@ ActiveAdmin.register AdminUser do
 
   index do
     column :email
-    column :role
+    column :role do |admin_user|
+      t("roles.#{admin_user.role}")
+    end
     column :created_at
     actions
   end
@@ -13,7 +15,9 @@ ActiveAdmin.register AdminUser do
   show do
     attributes_table do
       row :email
-      row :role
+      row :role do |admin_user|
+        t("roles.#{admin_user.role}")
+      end
       row :created_at
     end
   end
@@ -24,7 +28,7 @@ ActiveAdmin.register AdminUser do
     f.inputs do
       f.input :email
       f.input :password
-      f.input :role, as: :select, collection: %w[admin merchant waiter], include_blank: false
+      f.input :role, as: :select, collection: [[t('roles.admin'), :admin], [t('roles.waiter'), :waiter], [t('roles.merchant'), :merchant]], include_blank: false
     end
     f.actions
   end
