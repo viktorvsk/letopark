@@ -3,13 +3,16 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  namespace :api do
-    namespace :v1 do
-      resources :stores, only: %w[index]
-      resources :orders, only: %w[create index destroy]
+  constraints format: :json do
+    namespace :api do
+      namespace :v1 do
+        resources :stores, only: %w[index]
+        resources :orders, only: %w[create index destroy]
+        resource :verification_request, only: %w[update]
+        resource :customer, only: %w[update]
+      end
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
 module ActiveAdmin
